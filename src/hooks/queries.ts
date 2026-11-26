@@ -300,6 +300,48 @@ export function useSalons() {
   })
 }
 
+export function useSalon(salonId?: string) {
+  return useQuery({
+    queryKey: ['salon', salonId],
+    enabled: !!salonId,
+    queryFn: async () => {
+      const { data, error } = await supabase.from('salons').select('*').eq('id', salonId as string).single()
+      if (error) throw error
+      return data as Salon
+    },
+  })
+}
+
+// Dépôt du logo propre à un salon (bucket "salon-logos", voir
+// 0003_salon_logo.sql) : upload du fichier puis mise à jour de
+// salons.logo_url avec son URL publique.
+export function useUploadSalonLogo() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: async ({ salonId, file }: { salonId: string; file: File }) => {
+      const ext = file.name.split('.').pop() ?? 'png'
+      const path = `${salonId}/logo.${ext}`
+      const { error: uploadError } = await supabase.storage
+        .from('salon-logos')
+        .upload(path, file, { upsert: true, cacheControl: '3600' })
+      if (uploadError) throw uploadError
+
+      const { data: pub } = supabase.storage.from('salon-logos').getPublicUrl(path)
+      // on ajoute un paramètre de cache-busting : même nom de fichier à
+      // chaque remplacement, le navigateur doit recharger la nouvelle image.
+      const logo_url = `${pub.publicUrl}?v=${Date.now()}`
+
+      const { error: updateError } = await supabase.from('salons').update({ logo_url }).eq('id', salonId)
+      if (updateError) throw updateError
+      return logo_url
+    },
+    onSuccess: (_data, variables) => {
+      qc.invalidateQueries({ queryKey: ['salon', variables.salonId] })
+      qc.invalidateQueries({ queryKey: ['salons'] })
+    },
+  })
+}
+
 export function useAutomationLogs() {
   return useQuery({
     queryKey: ['automation_logs'],

@@ -18,6 +18,7 @@ export function AdminPartenaires() {
         <table className="w-full text-left text-sm">
           <thead className="border-b border-line bg-paper-soft text-xs uppercase tracking-wide text-ink-dim">
             <tr>
+              <th className="px-4 py-3 font-medium"></th>
               <th className="px-4 py-3 font-medium">Salon</th>
               <th className="px-4 py-3 font-medium">Statut</th>
               <th className="px-4 py-3 font-medium">Labellisé depuis</th>
@@ -26,6 +27,11 @@ export function AdminPartenaires() {
           <tbody>
             {salons?.map((s) => (
               <tr key={s.id} className="border-b border-line last:border-0">
+                <td className="px-4 py-3">
+                  <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg border border-line bg-paper-soft">
+                    {s.logo_url && <img src={s.logo_url} alt="" className="h-full w-full object-contain p-1" />}
+                  </div>
+                </td>
                 <td className="px-4 py-3">
                   <div className="font-medium text-ink">{s.nom_affichage}</div>
                   <div className="text-xs text-ink-dim">{s.raison_sociale}</div>

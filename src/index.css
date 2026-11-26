@@ -1,21 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  /* JUST HAIR LABEL — design tokens: blanc / noir / gris + touches dorées */
-  --color-ink: #141414;
-  --color-ink-dim: #5d5a56;
+  /* JUST HAIR LABEL — charte Just Hair : blanc / noir / rouge */
+  --color-ink: #000000;
+  --color-ink-dim: #5a5a5a;
   --color-paper: #ffffff;
-  --color-paper-soft: #f6f5f3;
-  --color-line: #e4e1dc;
-  --color-gold: #b8914a;
-  --color-gold-soft: #f3ead9;
+  --color-paper-soft: #f5f5f5;
+  --color-line: #e2e2e2;
+  /* Le nom "gold" est conservé pour ne pas toucher aux classes Tailwind
+     existantes (bg-gold, text-gold…) ; la couleur est désormais le rouge
+     de marque Just Hair #E20613. */
+  --color-gold: #e20613;
+  --color-gold-soft: #fde8ea;
   --color-success: #1f7a4d;
   --color-success-soft: #e4f3ea;
   --color-warn: #a8571f;
   --color-warn-soft: #f8ead9;
 
-  --font-display: "Playfair Display", ui-serif, Georgia, serif;
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  /* Bahnschrift (police de la charte Just Hair) est une police système
+     Microsoft non redistribuable sur le web. Barlow Semi Condensed/Barlow
+     en sont les alternatives web les plus proches (mêmes proportions
+     resserrées, mêmes terminaisons droites). */
+  --font-display: "Barlow Semi Condensed", "Bahnschrift", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Barlow", "Bahnschrift", system-ui, -apple-system, sans-serif;
 }
 
 html,

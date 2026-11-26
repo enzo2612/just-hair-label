@@ -18,10 +18,9 @@ export function AdminLayout() {
       <header className="sticky top-0 z-20 border-b border-line bg-ink text-paper">
         <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gold text-ink">
-              <span className="font-display text-sm">L</span>
-            </div>
-            <div className="font-display text-base leading-none">JUST HAIR LABEL — Bureau</div>
+            <img src="/logo-white.png" alt="Just Hair" className="h-7 w-auto" />
+            <div className="h-5 w-px bg-paper/30" />
+            <div className="font-display text-sm leading-none tracking-wide text-paper/80">LABEL — BUREAU</div>
           </div>
           <div className="ml-auto flex items-center gap-3 text-sm text-paper/80">
             <span>{profile?.nom}</span>

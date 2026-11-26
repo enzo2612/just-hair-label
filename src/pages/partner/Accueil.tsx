@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
-import { useContents, useProgressionStatus, useProgressionSteps } from '../../hooks/queries'
+import { useContents, useProgressionStatus, useProgressionSteps, useSalon } from '../../hooks/queries'
 import { Card, Badge, Spinner } from '../../components/ui'
 
 export function Accueil() {
   const { profile } = useAuth()
+  const { data: salon } = useSalon(profile?.salon_id ?? undefined)
   const { data: contents, isLoading } = useContents('published')
   const { data: steps } = useProgressionSteps()
   const { data: status } = useProgressionStatus(profile?.salon_id ?? undefined)
@@ -17,11 +18,20 @@ export function Accueil() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="font-display text-2xl text-ink">
-          Bonjour {profile?.nom?.split(' ')[0] ?? ''}, prêt·e à faire progresser votre salon cette semaine ?
-        </h1>
-        <p className="mt-1 text-sm text-ink-dim">Voici ce qui vous attend sur JUST HAIR LABEL.</p>
+      <div className="flex items-start gap-4">
+        {salon?.logo_url && (
+          <img
+            src={salon.logo_url}
+            alt={salon.nom_affichage}
+            className="h-14 w-14 shrink-0 rounded-xl border border-line bg-paper object-contain p-1.5"
+          />
+        )}
+        <div>
+          <h1 className="font-display text-2xl text-ink">
+            Bonjour {profile?.nom?.split(' ')[0] ?? ''}, prêt·e à faire progresser votre salon cette semaine ?
+          </h1>
+          <p className="mt-1 text-sm text-ink-dim">Voici ce qui vous attend sur JUST HAIR LABEL.</p>
+        </div>
       </div>
 
       {isLoading && <Spinner />}

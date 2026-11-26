@@ -26,10 +26,8 @@ export function Login() {
     <div className="flex min-h-screen items-center justify-center bg-paper-soft px-4">
       <div className="w-full max-w-sm">
         <div className="mb-10 text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-ink text-paper">
-            <span className="font-display text-lg">L</span>
-          </div>
-          <h1 className="font-display text-2xl text-ink">JUST HAIR LABEL</h1>
+          <img src="/logo-black.png" alt="Just Hair" className="mx-auto mb-5 h-10 w-auto" />
+          <h1 className="font-display text-xl tracking-wide text-ink-dim">LABEL</h1>
           <p className="mt-1 text-sm text-ink-dim">Vous êtes indépendant, mais vous n'êtes plus seul.</p>
         </div>
 

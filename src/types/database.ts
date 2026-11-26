@@ -30,6 +30,7 @@ export interface Salon {
   adresse: string | null
   statut: 'actif' | 'suspendu'
   date_adhesion: string
+  logo_url: string | null
   created_at: string
 }
 
