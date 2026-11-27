@@ -55,7 +55,7 @@ export default function App() {
             <Route
               path="/app"
               element={
-                <ProtectedRoute allow={['dirigeant', 'collaborateur']}>
+                <ProtectedRoute allow={['dirigeant', 'collaborateur', 'admin']}>
                   <PartnerLayout />
                 </ProtectedRoute>
               }
