@@ -15,6 +15,7 @@ import { Accompagnement } from './pages/partner/Accompagnement'
 import { Diagnostic } from './pages/partner/Diagnostic'
 import { Parametres } from './pages/partner/Parametres'
 import { AdminPartenaires } from './pages/admin/Partenaires'
+import { AdminNouveauPartenaire } from './pages/admin/NouveauPartenaire'
 import { AdminContenus } from './pages/admin/Contenus'
 import { AdminPacks } from './pages/admin/Packs'
 import { AdminDemandes } from './pages/admin/Demandes'
@@ -78,6 +79,7 @@ export default function App() {
               }
             >
               <Route index element={<AdminPartenaires />} />
+              <Route path="nouveau" element={<AdminNouveauPartenaire />} />
               <Route path="contenus" element={<AdminContenus />} />
               <Route path="packs" element={<AdminPacks />} />
               <Route path="demandes" element={<AdminDemandes />} />
